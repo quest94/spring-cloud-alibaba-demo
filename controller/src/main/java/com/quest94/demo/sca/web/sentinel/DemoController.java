@@ -16,10 +16,7 @@ package com.quest94.demo.sca.web.sentinel;
 
 import com.quest94.demo.sca.inversion.sentinel.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -33,7 +30,12 @@ public class DemoController {
     private DemoService demoService;
 
     @GetMapping("/bonjour/{name}")
-    public String apiSayHelloLocal(@PathVariable String name) {
+    public String bonjour(@PathVariable String name) {
+        return demoService.bonjour(name);
+    }
+
+    @PostMapping("/sayHello")
+    public String sayHello(String name) {
         return demoService.bonjour(name);
     }
 

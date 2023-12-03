@@ -3,4 +3,8 @@ spring:
   application:
     name: spring-cloud-alibaba-demo
   profiles:
+    active: dev
     include: dubbo,sentinel
+logging:
+  level:
+    root: info

@@ -1,4 +1,4 @@
-package com.quest94.demo.sca.common;
+package com.quest94.demo.sca.common.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
