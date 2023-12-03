@@ -37,7 +37,7 @@ public class DubboConfiguration {
 
     @Value("${spring.application.name}")
     private String applicationName;
-    @Value("${properties.nacos.address}")
+    @Value("${provider.registry.address.nacos}")
     private String registryAddress;
 
     // 应用配置

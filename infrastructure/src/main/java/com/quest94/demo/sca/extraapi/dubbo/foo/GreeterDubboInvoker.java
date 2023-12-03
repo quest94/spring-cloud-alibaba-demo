@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GreeterDubboInvoker {
 
-    @Value("${properties.nacos.address}")
+    @Value("${consumer.registry.address.greeter}")
     private String registryAddress;
 
     private static final String REGISTRY_ID = "greeterDubboInvokerRegistry";

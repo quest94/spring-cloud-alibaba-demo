@@ -3,4 +3,4 @@ spring:
   application:
     name: spring-cloud-alibaba-demo
   profiles:
-    include: sentinel,properties
+    include: dubbo,sentinel
