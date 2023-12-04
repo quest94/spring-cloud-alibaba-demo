@@ -19,6 +19,7 @@ public class DefaultGreeterServiceImpl implements DefaultGreeterService {
 
     //    @PostConstruct
     // 手动修改规则（硬编码方式）一般仅用于测试和演示
+    // 在 spring cloud alibaba 中如果通过硬编码方式修改规则会造成控制台不可用
     private void initFlowRules() {
         FlowRegulateUtils.loadRules(
                 FlowRegulateUtils.initFlowQpsRule(RESOURCE_NAME_ANNOTATION, 200),
