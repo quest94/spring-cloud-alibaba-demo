@@ -13,9 +13,19 @@
  */
 package com.quest94.demo.sca.config.sentinel;
 
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
+import com.quest94.demo.sca.global.exception.SentinelBlockExceptionHandler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SentinelConfiguration {
+
+    public static final String GLOBAL_BLOCK_EXCEPTION_HANDLER = "blockExceptionHandler";
+
+    @Bean(GLOBAL_BLOCK_EXCEPTION_HANDLER)
+    public BlockExceptionHandler globalBlockExceptionHandler() {
+        return new SentinelBlockExceptionHandler();
+    }
 
 }

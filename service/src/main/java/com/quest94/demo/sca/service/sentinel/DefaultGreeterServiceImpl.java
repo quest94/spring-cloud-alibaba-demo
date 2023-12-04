@@ -28,7 +28,8 @@ public class DefaultGreeterServiceImpl implements DefaultGreeterService {
     }
 
     @Override
-    @SentinelResource(value = RESOURCE_NAME_ANNOTATION, blockHandler = "blockHandlerForSayHello")
+//    @SentinelResource(value = RESOURCE_NAME_ANNOTATION, blockHandler = "blockHandlerForSayHello")
+    @SentinelResource(value = RESOURCE_NAME_ANNOTATION)
     public String sayHello(String name) {
         return FlowRegulateUtils.runInFlowRegulate(RESOURCE_NAME_CODE, () -> {
             LOGGER.info(name + " 执行了default服务");
