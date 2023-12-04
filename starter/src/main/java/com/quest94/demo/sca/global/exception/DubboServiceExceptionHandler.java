@@ -30,9 +30,8 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
         if (!GlobalResponseWrapper.class.isAssignableFrom(returnType)) {
             return;
         }
-        // 打印日志
+        // 处理全局异常返回值
         Throwable exception = appResponse.getException();
-        // 处理返回值
         GlobalResponseWrapper<Void> globalResponseWrapper = ExceptionHandlerUtils.convertToGlobalResponse(exception);
         appResponse.setException(null);
         appResponse.setValue(globalResponseWrapper);

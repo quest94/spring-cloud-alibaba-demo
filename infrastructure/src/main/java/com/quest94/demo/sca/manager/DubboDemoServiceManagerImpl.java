@@ -25,6 +25,7 @@ public class DubboDemoServiceManagerImpl implements DubboDemoServiceManager {
             if (remoteResult.isSuccess()) {
                 return StringUtils.trimToEmpty(remoteResult.getData());
             }
+            LOGGER.info("调用 dubboDemoService 的 sayHello 接口返回失败，{}，{}", remoteResult.getCode(), remoteResult.getMessage());
         } catch (Exception e) {
             LOGGER.error("调用 dubboDemoService 的 sayHello 接口出现异常", e);
         }

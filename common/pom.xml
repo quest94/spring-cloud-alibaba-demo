@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-annotation-aspectj</artifactId>
+            <artifactId>sentinel-core</artifactId>
         </dependency>
 
         <dependency>
