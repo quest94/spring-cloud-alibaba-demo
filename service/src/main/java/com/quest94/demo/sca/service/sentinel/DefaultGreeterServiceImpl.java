@@ -14,6 +14,7 @@ public class DefaultGreeterServiceImpl implements DefaultGreeterService {
     private static final String RESOURCE_NAME_ANNOTATION = "DefaultGreeterServiceImpl#sayHello#annotation";
 
     //    @PostConstruct
+    // 手动修改规则（硬编码方式）一般仅用于测试和演示
     private void initFlowRules() {
         FlowRegulateUtils.loadRules(
                 FlowRegulateUtils.initFlowQpsRule(RESOURCE_NAME_ANNOTATION, 200),

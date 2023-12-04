@@ -21,6 +21,7 @@ public class FlowRegulateUtils {
     }
 
     public static void loadRules(FlowRule... rules) {
+        // 手动修改规则（硬编码方式）一般仅用于测试和演示
         FlowRuleManager.loadRules(Arrays.asList(rules));
     }
 
