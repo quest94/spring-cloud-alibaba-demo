@@ -1,0 +1,1 @@
+exceptionHandler=com.quest94.demo.sca.global.exception.DubboServiceExceptionHandler

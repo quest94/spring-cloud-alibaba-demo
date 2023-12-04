@@ -14,6 +14,8 @@
 
 package com.quest94.demo.sca.service.sentinel;
 
+import com.quest94.demo.sca.common.exception.ServiceException;
+import com.quest94.demo.sca.common.util.StringUtils;
 import com.quest94.demo.sca.inversion.manager.DubboDemoServiceManager;
 import com.quest94.demo.sca.inversion.sentinel.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,11 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public String bonjour(String name) {
-        return dubboDemoServiceManager.sayHello(name);
+        String remoteResult = dubboDemoServiceManager.sayHello(name);
+        if (StringUtils.isBlank(remoteResult)) {
+            throw new ServiceException("demo 服务返回值异常");
+        }
+        return remoteResult;
     }
 
 }
