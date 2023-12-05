@@ -20,7 +20,7 @@ public class ExceptionHandlerUtils {
             return GlobalResponseWrapper.badRequest("系统繁忙，请稍后再试；" + uuid);
         }
         if (exception instanceof FlowRegulateException) {
-            LOGGER.warn("{} {}", uuid, exception.getMessage());
+            LOGGER.warn("{}，{}", exception.getMessage(), uuid);
             return GlobalResponseWrapper.flowLimited("系统繁忙，请稍后再试；" + uuid);
         }
         if (exception instanceof ServiceException) {
