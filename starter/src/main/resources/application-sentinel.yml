@@ -18,5 +18,5 @@ spring:
                     nacos:
                         rule-type: flow
                         server-addr: 127.0.0.1:8848
-                        group-id: sentinel-rule
-                        data-id: ${spring.application.name}:flow
+                        group-id: ${spring.application.name}
+                        data-id: sentinel-rule:flow
