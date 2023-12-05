@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BonjourDubboInvoker {
 
-    @Value("${consumer.registry.address.bonjour}")
+    @Value("${consumer.bonjour.registry.address}")
     private String registryAddress;
 
     private static final String BONJOUR_REGISTRY_ID = "bonjourDubboInvokerRegistry";
