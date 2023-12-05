@@ -5,7 +5,6 @@ import com.quest94.demo.sca.common.exception.ServiceException;
 import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 import java.util.UUID;
 
@@ -15,16 +14,12 @@ public class ExceptionHandlerUtils {
 
     public static GlobalResponseWrapper<Void> convertToGlobalResponse(Throwable exception) {
         String uuid = UUID.randomUUID().toString();
-        if (exception instanceof HttpRequestMethodNotSupportedException) {
-            LOGGER.warn(uuid, exception);
-            return GlobalResponseWrapper.badRequest("系统繁忙，请稍后再试；" + uuid);
-        }
         if (exception instanceof FlowRegulateException) {
             LOGGER.warn("{}，{}", exception.getMessage(), uuid);
             return GlobalResponseWrapper.flowLimited("系统繁忙，请稍后再试；" + uuid);
         }
         if (exception instanceof ServiceException) {
-            LOGGER.warn(uuid, exception);
+            LOGGER.warn("{}，{}", exception.getMessage(), uuid);
             return GlobalResponseWrapper.businessError("系统繁忙，请稍后再试；" + uuid);
         }
         LOGGER.error(uuid, exception);
