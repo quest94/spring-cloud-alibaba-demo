@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    sentinel:
+      log:
+        dir: .\starter\target\sentinel\
