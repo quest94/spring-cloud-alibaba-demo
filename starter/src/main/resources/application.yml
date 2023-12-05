@@ -1,4 +1,6 @@
 #项目运行配置环境
+server:
+  port: 8080
 spring:
   application:
     name: spring-cloud-alibaba-demo

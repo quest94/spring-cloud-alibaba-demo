@@ -12,6 +12,7 @@
     <artifactId>${parent.artifactId}-controller</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.quest94.demo</groupId>
             <artifactId>spring-cloud-alibaba-demo-common</artifactId>
@@ -25,12 +26,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-rpc-dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
 
     </dependencies>
