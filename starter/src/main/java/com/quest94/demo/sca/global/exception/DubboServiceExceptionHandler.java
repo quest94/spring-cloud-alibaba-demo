@@ -1,7 +1,5 @@
 package com.quest94.demo.sca.global.exception;
 
-import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.quest94.demo.sca.config.sentinel.SentinelConfiguration;
 import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
 import org.apache.dubbo.common.constants.CommonConstants;
@@ -19,7 +17,15 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DubboServiceExceptionHandler.class);
 
-    private BlockExceptionHandler blockExceptionHandler;
+    private SentinelBlockExceptionHandler sentinelBlockExceptionHandler;
+
+    /**
+     * 方法名 set 后面的字符， 除了开头字母大写，
+     * 后续字符要和{@link SentinelConfiguration#SENTINEL_BLOCK_EXCEPTION_HANDLER}保持一致
+     */
+    public void setSentinelBlockExceptionHandler(SentinelBlockExceptionHandler sentinelBlockExceptionHandler) {
+        this.sentinelBlockExceptionHandler = sentinelBlockExceptionHandler;
+    }
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
@@ -46,30 +52,19 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
 
     private Throwable extractException(Result appResponse) {
         Throwable exception = appResponse.getException();
-        exception = resolveBlockException(exception);
+        exception = resolveSentinelException(exception);
         return exception;
     }
 
-    private Throwable resolveBlockException(Throwable exception) {
-        if (Objects.nonNull(exception) && exception.getCause() instanceof BlockException) {
-            exception = exception.getCause();
-        }
-        if (!(exception instanceof BlockException)) {
-            return exception;
-        }
-        if (Objects.isNull(blockExceptionHandler)) {
+    private Throwable resolveSentinelException(Throwable exception) {
+        if (Objects.isNull(sentinelBlockExceptionHandler)) {
             LOGGER.error("没有取到 blockExceptionHandler，" +
                     "blockExceptionHandler 的 BeanName 为 " +
-                    SentinelConfiguration.GLOBAL_BLOCK_EXCEPTION_HANDLER
+                    SentinelConfiguration.SENTINEL_BLOCK_EXCEPTION_HANDLER
                     + " 请保持一致");
             return exception;
         }
-        try {
-            blockExceptionHandler.handle(null, null, (BlockException) exception);
-        } catch (Exception e) {
-            exception = e;
-        }
-        return exception;
+        return sentinelBlockExceptionHandler.handle(exception);
     }
 
     private static Class<?> resolveReturnType(Invocation invocation) {
@@ -87,14 +82,6 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
 
     @Override
     public void onError(Throwable e, Invoker<?> invoker, Invocation invocation) {
-    }
-
-    /**
-     * 方法名 set 后面的字符， 除了开头字母大写，
-     * 后续字符要和{@link SentinelConfiguration#GLOBAL_BLOCK_EXCEPTION_HANDLER}保持一致
-     */
-    public void setBlockExceptionHandler(BlockExceptionHandler blockExceptionHandler) {
-        this.blockExceptionHandler = blockExceptionHandler;
     }
 
 }

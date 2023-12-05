@@ -14,9 +14,9 @@ spring:
             # Sentinel Web filter 默认收敛所有URL的入口context，会造成链路限流不生效。
             web-context-unify: false
             datasource:
-                nacos:
+                flow-rule:
                     nacos:
                         rule-type: flow
                         server-addr: 127.0.0.1:8848
-                        group-id: sentinel
-                        data-id: ${spring.application.name}
+                        group-id: sentinel-rule
+                        data-id: ${spring.application.name}:flow

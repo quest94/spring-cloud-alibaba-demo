@@ -21,10 +21,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SentinelConfiguration {
 
-    public static final String GLOBAL_BLOCK_EXCEPTION_HANDLER = "blockExceptionHandler";
+    public static final String SENTINEL_BLOCK_EXCEPTION_HANDLER = "sentinelBlockExceptionHandler";
 
-    @Bean(GLOBAL_BLOCK_EXCEPTION_HANDLER)
-    public BlockExceptionHandler globalBlockExceptionHandler() {
+
+    @Bean(SENTINEL_BLOCK_EXCEPTION_HANDLER)
+    public SentinelBlockExceptionHandler sentinelBlockExceptionHandler() {
         return new SentinelBlockExceptionHandler();
     }
 

@@ -7,7 +7,7 @@ public class FlowRegulateException extends RuntimeException {
     }
 
     public FlowRegulateException(String resourceName) {
-        super(resourceName + " 被限流了");
+        super(resourceName);
     }
 
 }
