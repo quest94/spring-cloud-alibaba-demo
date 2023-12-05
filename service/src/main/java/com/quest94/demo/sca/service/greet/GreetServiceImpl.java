@@ -14,6 +14,7 @@
 
 package com.quest94.demo.sca.service.greet;
 
+import com.alibaba.csp.sentinel.EntryType;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.quest94.demo.sca.common.exception.FlowRegulateException;
@@ -27,6 +28,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Eric Zhao
  */
@@ -35,8 +39,9 @@ public class GreetServiceImpl implements GreetService {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(GreetServiceImpl.class);
 
-    private static final String SAY_HELLO_CODE = "DefaultGreetDubboServiceImpl#sayHello#code";
-    private static final String SAY_HELLO_ANNOTATION = "DefaultGreetDubboServiceImpl#sayHello#annotation";
+    private static final String RESOURCE_NAME_BONJOUR = "GreetServiceImpl#bonjour";
+    private static final String RESOURCE_NAME_SAY_HELLO_CODE = "GreetServiceImpl#sayHello#code";
+    private static final String RESOURCE_NAME_SAY_HELLO_ANNOTATION = "GreetServiceImpl#sayHello#annotation";
 
     @Autowired
     private BonjourServiceManager bonjourServiceManager;
@@ -46,17 +51,20 @@ public class GreetServiceImpl implements GreetService {
     // 在 spring cloud alibaba 中如果通过硬编码方式修改规则会造成控制台不可用
     private void initFlowRules() {
         FlowRegulateUtils.loadRules(
-                FlowRegulateUtils.initFlowQpsRule(SAY_HELLO_ANNOTATION, 200),
-                FlowRegulateUtils.initFlowQpsRule(SAY_HELLO_CODE, 100)
+                FlowRegulateUtils.initFlowQpsRule(RESOURCE_NAME_SAY_HELLO_ANNOTATION, 200),
+                FlowRegulateUtils.initFlowQpsRule(RESOURCE_NAME_SAY_HELLO_CODE, 100)
         );
     }
 
     @Override
-//    @SentinelResource(value = SAY_HELLO_ANNOTATION, blockHandler = "blockHandlerForSayHello")
-    @SentinelResource(value = SAY_HELLO_ANNOTATION)
+    @SentinelResource(value = RESOURCE_NAME_SAY_HELLO_ANNOTATION, entryType = EntryType.IN, blockHandler = "blockHandlerForSayHello")
     public String sayHello(String name) {
-        return FlowRegulateUtils.runInFlowRegulate(SAY_HELLO_CODE, () -> {
-            LOGGER.info(name + " 执行了default服务");
+        return FlowRegulateUtils.runInFlowRegulate(RESOURCE_NAME_SAY_HELLO_CODE, () -> {
+            try {
+                TimeUnit.MILLISECONDS.sleep(new Random(System.currentTimeMillis()).nextInt(500));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return String.format("您好 %s！", name);
         });
     }
@@ -66,10 +74,11 @@ public class GreetServiceImpl implements GreetService {
     }
 
     @Override
+    @SentinelResource(value = RESOURCE_NAME_BONJOUR, entryType = EntryType.IN)
     public String bonjour(String name) {
         String remoteResult = bonjourServiceManager.bonjour(name);
         if (StringUtils.isBlank(remoteResult)) {
-            throw new ServiceException("demo 服务返回值异常");
+            throw new ServiceException("bonjour 服务返回值异常");
         }
         return remoteResult;
     }
