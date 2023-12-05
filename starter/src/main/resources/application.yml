@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: spring-cloud-alibaba-demo
-  config:
-    import: classpath:dubbo.properties
   profiles:
-    active: dev
-    include: sentinel
-logging:
-  level:
-    root: info
+    default: dev
+

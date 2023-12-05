@@ -1,5 +1,6 @@
 spring:
-  cloud:
-    sentinel:
-      log:
-        dir: .\starter\target\sentinel\
+  config:
+    import: classpath:dev/dubbo.properties, classpath:dev/sentinel.yml
+logging:
+  level:
+    root: info
