@@ -13,7 +13,6 @@
  */
 package com.quest94.demo.sca.config.sentinel;
 
-import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.quest94.demo.sca.global.exception.SentinelBlockExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
