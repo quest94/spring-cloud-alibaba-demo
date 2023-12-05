@@ -3,6 +3,7 @@ package com.quest94.demo.sca.extraapi.dubbo.greet;
 import com.quest94.demo.sca.openapi.dubbo.greet.GreetDubboService;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.rpc.Constants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,7 @@ public class BonjourDubboInvoker {
     }
 
     // 引入 GreetDubboService 服务，模拟调用三方dubbo接口
-    @DubboReference(id = "bonjourService", registry = BONJOUR_REGISTRY_ID)
+    @DubboReference(id = "bonjourService", registry = BONJOUR_REGISTRY_ID, scope = Constants.SCOPE_REMOTE)
     private GreetDubboService bonjourService;
 
 }
