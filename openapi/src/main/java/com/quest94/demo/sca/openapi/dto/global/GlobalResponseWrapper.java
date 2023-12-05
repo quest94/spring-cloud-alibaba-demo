@@ -1,4 +1,4 @@
-package com.quest94.demo.sca.openapi.dto;
+package com.quest94.demo.sca.openapi.dto.global;
 
 import lombok.Getter;
 
@@ -16,16 +16,16 @@ public class GlobalResponseWrapper<T> implements Serializable {
     private final String message;
     private final T data;
 
-    private GlobalResponseWrapper(HttpStatusEnum httpStatusEnum, String message) {
-        this.success = httpStatusEnum.isSuccess();
-        this.code = httpStatusEnum.getCode();
+    private GlobalResponseWrapper(ResponseStatusEnum responseStatusEnum, String message) {
+        this.success = responseStatusEnum.isSuccess();
+        this.code = responseStatusEnum.getCode();
         this.message = message;
         this.data = null;
     }
 
     private GlobalResponseWrapper(T data) {
-        this.success = HttpStatusEnum.SUCCESS.isSuccess();
-        this.code = HttpStatusEnum.SUCCESS.getCode();
+        this.success = ResponseStatusEnum.SUCCESS.isSuccess();
+        this.code = ResponseStatusEnum.SUCCESS.getCode();
         this.message = null;
         this.data = data;
     }
@@ -35,19 +35,19 @@ public class GlobalResponseWrapper<T> implements Serializable {
     }
 
     public static <T> GlobalResponseWrapper<T> badRequest(String message) {
-        return new GlobalResponseWrapper<>(HttpStatusEnum.BAD_REQUEST, message);
+        return new GlobalResponseWrapper<>(ResponseStatusEnum.BAD_REQUEST, message);
     }
 
     public static <T> GlobalResponseWrapper<T> flowLimited(String message) {
-        return new GlobalResponseWrapper<>(HttpStatusEnum.FLOW_LIMITED, message);
+        return new GlobalResponseWrapper<>(ResponseStatusEnum.FLOW_LIMITED, message);
     }
 
     public static <T> GlobalResponseWrapper<T> businessError(String message) {
-        return new GlobalResponseWrapper<>(HttpStatusEnum.BUSINESS_ERROR, message);
+        return new GlobalResponseWrapper<>(ResponseStatusEnum.BUSINESS_ERROR, message);
     }
 
     public static <T> GlobalResponseWrapper<T> systemError(String message) {
-        return new GlobalResponseWrapper<>(HttpStatusEnum.SYSTEM_ERROR, message);
+        return new GlobalResponseWrapper<>(ResponseStatusEnum.SYSTEM_ERROR, message);
     }
 
 }

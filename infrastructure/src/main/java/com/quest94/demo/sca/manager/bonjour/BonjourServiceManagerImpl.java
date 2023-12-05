@@ -1,9 +1,9 @@
-package com.quest94.demo.sca.manager;
+package com.quest94.demo.sca.manager.bonjour;
 
 import com.quest94.demo.sca.common.util.StringUtils;
-import com.quest94.demo.sca.inversion.manager.DubboDemoServiceManager;
-import com.quest94.demo.sca.openapi.dto.GlobalResponseWrapper;
-import com.quest94.demo.sca.openapi.dubbo.greeter.GreeterDubboService;
+import com.quest94.demo.sca.inversion.manager.bonjour.BonjourServiceManager;
+import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.openapi.dubbo.greet.GreetDubboService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +11,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DubboDemoServiceManagerImpl implements DubboDemoServiceManager {
+public class BonjourServiceManagerImpl implements BonjourServiceManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DubboDemoServiceManagerImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BonjourServiceManagerImpl.class);
 
+    // 使用 GreetDubboService 服务，模拟调用三方dubbo接口
     @Autowired
-    @Qualifier("dubboDemoService")
-    private GreeterDubboService dubboDemoService;
+    @Qualifier("bonjourService")
+    private GreetDubboService bonjourService;
 
-    public String sayHello(String name) {
+    public String bonjour(String name) {
         try {
-            GlobalResponseWrapper<String> remoteResult = dubboDemoService.sayHello(name);
+            GlobalResponseWrapper<String> remoteResult = bonjourService.sayHello(name);
             if (remoteResult.isSuccess()) {
                 return StringUtils.trimToEmpty(remoteResult.getData());
             }

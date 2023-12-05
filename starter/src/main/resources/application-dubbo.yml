@@ -5,4 +5,4 @@ provider:
 consumer:
   registry:
     address:
-      greeter: nacos://127.0.0.1:8848
+      greet: nacos://127.0.0.1:8848

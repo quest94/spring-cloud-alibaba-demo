@@ -1,6 +1,6 @@
 package com.quest94.demo.sca.global.exception;
 
-import com.quest94.demo.sca.openapi.dto.GlobalResponseWrapper;
+import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

@@ -3,7 +3,7 @@ package com.quest94.demo.sca.global.exception;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.quest94.demo.sca.config.sentinel.SentinelConfiguration;
-import com.quest94.demo.sca.openapi.dto.GlobalResponseWrapper;
+import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
 import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;

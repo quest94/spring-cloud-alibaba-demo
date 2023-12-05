@@ -1,11 +1,11 @@
-package com.quest94.demo.sca.openapi.dto;
+package com.quest94.demo.sca.openapi.dto.global;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum HttpStatusEnum {
+public enum ResponseStatusEnum {
 
     SUCCESS(Boolean.TRUE, "200", "操作成功"),
     ACCEPTED(Boolean.TRUE, "202", "请求已经被接受"),

@@ -12,31 +12,28 @@
  * limitations under the License.
  */
 
-package com.quest94.demo.sca.web.sentinel;
+package com.quest94.demo.sca.web.greet;
 
-import com.quest94.demo.sca.inversion.sentinel.DemoService;
+import com.quest94.demo.sca.inversion.greet.GreetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-/**
- * @author Eric Zhao
- */
 @RestController
-@RequestMapping("/demo")
-public class DemoController {
+@RequestMapping("/greet")
+public class GreetController {
 
     @Autowired
-    private DemoService demoService;
+    private GreetService greetService;
 
     @GetMapping("/bonjour/{name}")
     public String bonjour(@PathVariable String name) {
-        return demoService.bonjour(name);
+        return greetService.bonjour(name);
     }
 
     @PostMapping("/sayHello")
     public String sayHello(String name) {
-        return demoService.bonjour(name);
+        return greetService.bonjour(name);
     }
 
 }
