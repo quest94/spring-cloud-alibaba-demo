@@ -5,4 +5,4 @@ provider:
 consumer:
   registry:
     address:
-      greet: nacos://127.0.0.1:8848
+      bonjour: ${provider.registry.address.nacos}
