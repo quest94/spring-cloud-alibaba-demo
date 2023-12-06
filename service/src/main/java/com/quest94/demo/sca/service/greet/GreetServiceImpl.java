@@ -59,7 +59,7 @@ public class GreetServiceImpl implements GreetService {
     @Override
     @SentinelResource(value = RESOURCE_NAME_SAY_HELLO_ANNOTATION, entryType = EntryType.IN, blockHandler = "blockHandlerForSayHello")
     public String sayHello(String name) {
-        return FlowRegulateUtils.within(RESOURCE_NAME_SAY_HELLO_CODE, () -> {
+        return FlowRegulateUtils.run(RESOURCE_NAME_SAY_HELLO_CODE, () -> {
             try {
                 TimeUnit.MILLISECONDS.sleep(new Random(System.currentTimeMillis()).nextInt(500));
             } catch (InterruptedException e) {

@@ -26,13 +26,13 @@ public class FlowRegulateUtils {
         FlowRuleManager.loadRules(Arrays.asList(rules));
     }
 
-    public static <T> T within(String resourceName, Supplier<T> supplier) {
-        return within(resourceName, supplier, null, null);
+    public static <T> T run(String resourceName, Supplier<T> supplier) {
+        return run(resourceName, supplier, null, null);
     }
 
-    public static <T> T within(String resourceName, Supplier<T> supplier,
-                               Function<BlockException, T> blockHandler,
-                               Function<Throwable, T> fallbackHandler) {
+    public static <T> T run(String resourceName, Supplier<T> supplier,
+                            Function<BlockException, T> blockHandler,
+                            Function<Throwable, T> fallbackHandler) {
         try (Entry entry = SphU.entry(resourceName)) {
             return supplier.get();
         } catch (com.alibaba.csp.sentinel.slots.block.BlockException e) {
