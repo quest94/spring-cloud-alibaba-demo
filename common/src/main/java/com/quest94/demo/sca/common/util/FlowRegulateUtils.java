@@ -41,7 +41,7 @@ public class FlowRegulateUtils {
             }
             throw new FlowRegulateException(resourceName);
         } catch (Throwable e) {
-            if (Objects.nonNull(blockHandler)) {
+            if (Objects.nonNull(fallbackHandler)) {
                 return fallbackHandler.apply(e);
             }
             throw e;
