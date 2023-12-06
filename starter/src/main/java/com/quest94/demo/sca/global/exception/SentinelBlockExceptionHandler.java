@@ -52,7 +52,7 @@ public class SentinelBlockExceptionHandler implements BlockExceptionHandler {
         AbstractRule rule = blockException.getRule();
         String resource = rule.getResource();
         LOGGER.warn(resource + " " + message, blockException);
-        return new FlowRegulateException(message);
+        return new FlowRegulateException(BlockException.BLOCK_EXCEPTION_MSG_PREFIX + getClass().getSimpleName());
     }
 
 }
