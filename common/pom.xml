@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>${parent.artifactId}-common</artifactId>
+    <artifactId>${project.parent.artifactId}-common</artifactId>
 
     <dependencies>
 

@@ -9,13 +9,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>${parent.artifactId}-service</artifactId>
+    <artifactId>${project.parent.artifactId}-service</artifactId>
 
     <dependencies>
 
         <dependency>
             <groupId>com.quest94.demo</groupId>
-            <artifactId>spring-cloud-alibaba-demo-controller</artifactId>
+            <artifactId>${project.parent.artifactId}-controller</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
