@@ -1,6 +1,6 @@
 package com.quest94.demo.sca.extraapi.dubbo.greet;
 
-import com.quest94.demo.sca.openapi.dubbo.greet.GreetDubboService;
+import com.quest94.demo.sca.api.dubbo.greet.GreetDubboService;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.rpc.Constants;

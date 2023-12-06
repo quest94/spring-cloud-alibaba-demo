@@ -1,7 +1,7 @@
-package com.quest94.demo.sca.openapi.dubbo.greet;
+package com.quest94.demo.sca.api.dubbo.greet;
 
 
-import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
 
 public interface GreetDubboService {
 

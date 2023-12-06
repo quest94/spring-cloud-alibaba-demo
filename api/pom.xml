@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>${parent.artifactId}-openapi</artifactId>
+    <artifactId>${parent.artifactId}-api</artifactId>
 
     <dependencies>
         <dependency>

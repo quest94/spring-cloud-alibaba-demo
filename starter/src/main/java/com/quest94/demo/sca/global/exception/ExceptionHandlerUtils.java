@@ -2,7 +2,7 @@ package com.quest94.demo.sca.global.exception;
 
 import com.quest94.demo.sca.common.exception.FlowRegulateException;
 import com.quest94.demo.sca.common.exception.ServiceException;
-import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

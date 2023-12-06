@@ -1,7 +1,8 @@
 package com.quest94.demo.sca.openapi.dubbo.greet;
 
+import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dubbo.greet.GreetDubboService;
 import com.quest94.demo.sca.inversion.greet.GreetService;
-import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 

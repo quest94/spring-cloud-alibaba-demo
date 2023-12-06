@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.quest94.demo</groupId>
-            <artifactId>spring-cloud-alibaba-demo-openapi</artifactId>
+            <artifactId>spring-cloud-alibaba-demo-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

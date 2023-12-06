@@ -1,4 +1,4 @@
-package com.quest94.demo.sca.openapi.dto.global;
+package com.quest94.demo.sca.api.dto.global;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

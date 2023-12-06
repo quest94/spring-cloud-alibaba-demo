@@ -1,7 +1,7 @@
 package com.quest94.demo.sca.global.exception;
 
 import com.quest94.demo.sca.config.sentinel.SentinelConfiguration;
-import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
 import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;

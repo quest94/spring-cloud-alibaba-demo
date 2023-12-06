@@ -2,8 +2,8 @@ package com.quest94.demo.sca.manager.bonjour;
 
 import com.quest94.demo.sca.common.util.StringUtils;
 import com.quest94.demo.sca.inversion.manager.bonjour.BonjourServiceManager;
-import com.quest94.demo.sca.openapi.dto.global.GlobalResponseWrapper;
-import com.quest94.demo.sca.openapi.dubbo.greet.GreetDubboService;
+import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dubbo.greet.GreetDubboService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
