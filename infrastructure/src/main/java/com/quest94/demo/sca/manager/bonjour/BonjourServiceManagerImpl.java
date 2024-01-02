@@ -1,6 +1,6 @@
 package com.quest94.demo.sca.manager.bonjour;
 
-import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.ResponseSingle;
 import com.quest94.demo.sca.api.dubbo.greet.GreetDubboService;
 import com.quest94.demo.sca.common.util.RunUtils;
 import com.quest94.demo.sca.common.util.StringUtils;
@@ -23,7 +23,7 @@ public class BonjourServiceManagerImpl implements BonjourServiceManager {
 
     public String bonjour(String name) {
         String result = RunUtils.withSilent(() -> {
-            GlobalResponseWrapper<String> remoteResult = bonjourService.sayHello(name);
+            ResponseSingle<String> remoteResult = bonjourService.sayHello(name);
             if (remoteResult.isSuccess()) {
                 return remoteResult.getData();
             }

@@ -1,6 +1,6 @@
 package com.quest94.demo.sca.global.exception;
 
-import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.Response;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +18,14 @@ public class WebControllerExceptionHandler {
     SentinelBlockExceptionHandler sentinelBlockExceptionHandler;
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public GlobalResponseWrapper<Void> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
-                                                                           HttpServletRequest request) {
+    public Response handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
+                                                        HttpServletRequest request) {
         LOGGER.warn("请求地址'{}',不支持'{}'请求", request.getRequestURI(), e.getMethod());
-        return GlobalResponseWrapper.badRequest(e.getMessage());
+        return Response.badRequest(e.getMessage());
     }
 
     @ExceptionHandler(value = Throwable.class)
-    public GlobalResponseWrapper<Void> handleException(Throwable exception) {
+    public Response handleException(Throwable exception) {
         exception = sentinelBlockExceptionHandler.handle(exception);
         return ExceptionHandlerUtils.convertToGlobalResponse(exception);
     }

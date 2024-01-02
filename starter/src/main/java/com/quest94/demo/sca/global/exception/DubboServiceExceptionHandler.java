@@ -1,7 +1,7 @@
 package com.quest94.demo.sca.global.exception;
 
+import com.quest94.demo.sca.api.dto.global.Response;
 import com.quest94.demo.sca.config.sentinel.SentinelConfiguration;
-import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
 import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.*;
@@ -40,14 +40,14 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
         }
         // 判断是否是通用返回值
         Class<?> returnType = resolveReturnType(invocation);
-        if (!GlobalResponseWrapper.class.isAssignableFrom(returnType)) {
+        if (!Response.class.isAssignableFrom(returnType)) {
             return;
         }
         // 处理全局异常返回值
         Throwable exception = extractException(appResponse);
-        GlobalResponseWrapper<Void> globalResponseWrapper = ExceptionHandlerUtils.convertToGlobalResponse(exception);
+        Response response = ExceptionHandlerUtils.convertToGlobalResponse(exception);
         appResponse.setException(null);
-        appResponse.setValue(globalResponseWrapper);
+        appResponse.setValue(response);
     }
 
     private Throwable extractException(Result appResponse) {

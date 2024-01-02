@@ -1,6 +1,6 @@
 package com.quest94.demo.sca.openapi.dubbo.greet;
 
-import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.ResponseSingle;
 import com.quest94.demo.sca.api.dubbo.greet.GreetDubboService;
 import com.quest94.demo.sca.inversion.greet.GreetService;
 import org.apache.dubbo.config.annotation.DubboService;
@@ -13,9 +13,9 @@ public class GreetDubboServiceImpl implements GreetDubboService {
     private GreetService greetService;
 
     @Override
-    public GlobalResponseWrapper<String> sayHello(String name) {
+    public ResponseSingle<String> sayHello(String name) {
         String string = greetService.sayHello(name);
-        return GlobalResponseWrapper.success(string);
+        return ResponseSingle.success(string);
     }
 
 }

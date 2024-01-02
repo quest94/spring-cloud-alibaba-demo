@@ -1,11 +1,11 @@
 package com.quest94.demo.sca.api.dubbo.greet;
 
 
-import com.quest94.demo.sca.api.dto.global.GlobalResponseWrapper;
+import com.quest94.demo.sca.api.dto.global.ResponseSingle;
 
 public interface GreetDubboService {
 
     // 同步调用方法
-    GlobalResponseWrapper<String> sayHello(String name);
+    ResponseSingle<String> sayHello(String name);
 
 }
