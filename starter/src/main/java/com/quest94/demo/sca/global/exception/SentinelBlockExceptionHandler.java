@@ -20,6 +20,16 @@ public class SentinelBlockExceptionHandler implements BlockExceptionHandler {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(SentinelBlockExceptionHandler.class);
 
+    private static final SentinelBlockExceptionHandler INSTANCE = new SentinelBlockExceptionHandler();
+
+    private SentinelBlockExceptionHandler() {
+
+    }
+
+    public static SentinelBlockExceptionHandler getInstance() {
+        return INSTANCE;
+    }
+
     public Throwable handle(Throwable exception) {
         if (Objects.nonNull(exception) && exception.getCause() instanceof BlockException) {
             exception = exception.getCause();
