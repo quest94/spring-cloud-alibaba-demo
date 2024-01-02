@@ -23,7 +23,7 @@ public class SentinelConfiguration {
 
     @Bean
     public BlockExceptionHandler sentinelBlockExceptionHandler() {
-        return SentinelBlockExceptionHandler.getInstance();
+        return new SentinelBlockExceptionHandler();
     }
 
 }

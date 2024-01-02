@@ -39,7 +39,7 @@ public class DubboServiceExceptionHandler implements Filter, Filter.Listener {
 
     private Throwable extractException(Result appResponse) {
         Throwable exception = appResponse.getException();
-        exception = SentinelBlockExceptionHandler.getInstance().handle(exception);
+        exception = SentinelBlockExceptionHandler.handle(exception);
         return exception;
     }
 

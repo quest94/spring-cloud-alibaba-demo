@@ -24,11 +24,15 @@ public class WebControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = Throwable.class)
-    public Response handleException(Throwable exception,
+    public Response handleThrowable(Throwable exception,
                                     HttpServletRequest request,
                                     HttpServletResponse httpServletResponse) {
+        return handleThrowable(exception, httpServletResponse);
+    }
+
+    public static Response handleThrowable(Throwable exception, HttpServletResponse httpServletResponse) {
         // Sentinel 异常处理
-        exception = SentinelBlockExceptionHandler.getInstance().handle(exception);
+        exception = SentinelBlockExceptionHandler.handle(exception);
         // 统一异常处理
         Response response = ExceptionHandlerUtils.convertToGlobalResponse(exception);
         if (!response.isSuccess()) {
