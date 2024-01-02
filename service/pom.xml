@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.quest94.demo</groupId>
-            <artifactId>${project.parent.artifactId}-interface</artifactId>
+            <artifactId>${project.parent.artifactId}-controller</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

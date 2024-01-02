@@ -14,7 +14,7 @@
 
     <modules>
         <module>starter</module>
-        <module>interface</module>
+        <module>controller</module>
         <module>service</module>
         <module>infrastructure</module>
         <module>common</module>
