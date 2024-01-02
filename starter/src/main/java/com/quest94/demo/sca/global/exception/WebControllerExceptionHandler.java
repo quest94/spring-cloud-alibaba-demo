@@ -27,9 +27,14 @@ public class WebControllerExceptionHandler {
     public Response handleException(Throwable exception,
                                     HttpServletRequest request,
                                     HttpServletResponse httpServletResponse) {
+        // Sentinel 异常处理
         exception = SentinelBlockExceptionHandler.getInstance().handle(exception);
-        httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        return ExceptionHandlerUtils.convertToGlobalResponse(exception);
+        // 统一异常处理
+        Response response = ExceptionHandlerUtils.convertToGlobalResponse(exception);
+        if (!response.isSuccess()) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        return response;
     }
 
 }
