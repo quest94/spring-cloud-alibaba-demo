@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>${project.parent.artifactId}-controller</artifactId>
+    <artifactId>${project.parent.artifactId}-interface</artifactId>
 
     <dependencies>
 
